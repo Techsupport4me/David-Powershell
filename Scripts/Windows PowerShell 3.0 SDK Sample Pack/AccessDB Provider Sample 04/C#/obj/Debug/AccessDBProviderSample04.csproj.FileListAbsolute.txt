@@ -1,0 +1,4 @@
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\AccessDB Provider Sample 04\C#\bin\Debug\AccessDBProviderSample04.dll
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\AccessDB Provider Sample 04\C#\bin\Debug\AccessDBProviderSample04.pdb
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\AccessDB Provider Sample 04\C#\obj\Debug\AccessDBProviderSample04.dll
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\AccessDB Provider Sample 04\C#\obj\Debug\AccessDBProviderSample04.pdb

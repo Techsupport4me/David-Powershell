@@ -1,0 +1,5 @@
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\Host Sample 06\C#\bin\Debug\Host06.exe
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\Host Sample 06\C#\bin\Debug\Host06.pdb
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\Host Sample 06\C#\obj\Debug\Host06.csprojResolveAssemblyReference.cache
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\Host Sample 06\C#\obj\Debug\Host06.exe
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\Host Sample 06\C#\obj\Debug\Host06.pdb

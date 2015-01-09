@@ -1,0 +1,5 @@
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\Activity Generator Sample\C#\bin\Debug\ActivityGenerator.exe
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\Activity Generator Sample\C#\bin\Debug\ActivityGenerator.pdb
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\Activity Generator Sample\C#\obj\Debug\ActivityGenerator.csprojResolveAssemblyReference.cache
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\Activity Generator Sample\C#\obj\Debug\ActivityGenerator.exe
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\Activity Generator Sample\C#\obj\Debug\ActivityGenerator.pdb

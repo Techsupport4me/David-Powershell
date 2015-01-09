@@ -1,0 +1,5 @@
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\AccessDB Provider Sample 01\C#\bin\Debug\AccessDBProviderSample01.dll
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\AccessDB Provider Sample 01\C#\bin\Debug\AccessDBProviderSample01.pdb
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\AccessDB Provider Sample 01\C#\obj\Debug\AccessDBProviderSample01.csprojResolveAssemblyReference.cache
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\AccessDB Provider Sample 01\C#\obj\Debug\AccessDBProviderSample01.dll
+D:\Documents\WindowsPowerShell\Windows PowerShell 3.0 SDK Sample Pack\AccessDB Provider Sample 01\C#\obj\Debug\AccessDBProviderSample01.pdb
