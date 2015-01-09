@@ -1,18 +1,19 @@
 
 $time = Get-Date -Format "HH:mm"
-Write-Host "Hi David, welcome back! It is now " $time
+$user = $env:username
+Write-Host "Hi "$user", welcome back! It is now " $time
 
 Remove-Variable -Force HOME
-Set-Variable HOME "C:\Users\David"
-d:
-cd 'D:\Documents\WindowsPowerShell\Scripts'
+Set-Variable HOME 'E:\Documents\WindowsPowerShell\Scripts'
+E:
+cd 'E:\Documents\WindowsPowerShell\Scripts'
 $pwd
 
 # SIG # Begin signature block
 # MIINGAYJKoZIhvcNAQcCoIINCTCCDQUCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU4ZD6FoLK0Ioe8UnPBqA6ZlH4
-# OEigggpaMIIFIjCCBAqgAwIBAgIQAupQIxjzGlMFoE+9rHncOTANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqfRi1XY411stLiIWKHUDNX+D
+# bCagggpaMIIFIjCCBAqgAwIBAgIQAupQIxjzGlMFoE+9rHncOTANBgkqhkiG9w0B
 # AQsFADByMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYD
 # VQQLExB3d3cuZGlnaWNlcnQuY29tMTEwLwYDVQQDEyhEaWdpQ2VydCBTSEEyIEFz
 # c3VyZWQgSUQgQ29kZSBTaWduaW5nIENBMB4XDTE0MDcxNzAwMDAwMFoXDTE1MDcy
@@ -72,11 +73,11 @@ $pwd
 # MTAvBgNVBAMTKERpZ2lDZXJ0IFNIQTIgQXNzdXJlZCBJRCBDb2RlIFNpZ25pbmcg
 # Q0ECEALqUCMY8xpTBaBPvax53DkwCQYFKw4DAhoFAKB4MBgGCisGAQQBgjcCAQwx
 # CjAIoAKAAKECgAAwGQYJKoZIhvcNAQkDMQwGCisGAQQBgjcCAQQwHAYKKwYBBAGC
-# NwIBCzEOMAwGCisGAQQBgjcCARUwIwYJKoZIhvcNAQkEMRYEFHp56jlGBJStn7L0
-# faQPT+Bluau2MA0GCSqGSIb3DQEBAQUABIIBACwgItlu1v6f+8wyTmw7CzFurY+C
-# fYMvnp/KvMiDKkiIWd85FEGLb7B3vqz4K0el0z3l9e46ZfxibAmgxZUIj2gL0D9G
-# BRrB2QOeLHFcnb4SvYZNfG0/I4X2xxbCPSDzPmNbFRYObnLlahSr+it4/wyLskc+
-# I31ghjh8eCp1zxxPXAaLTv3FfAL6xFHBoRZUs4ve+34W2ODnX+gyUvDdl9wbncAY
-# ZaidbLa4c+873a0LcpkIFNgz24T9XyOBMzi7ZyEoH83EabR3S/mm12Yg+eWiJySk
-# eMFFsJIlwruIa4UKnIFomHfe4oNZtG3LXCVTB1TsktQh5Uc8YITnhmvCURc=
+# NwIBCzEOMAwGCisGAQQBgjcCARUwIwYJKoZIhvcNAQkEMRYEFMAy6VeQ/mCg/5e6
+# P1fS11yNkurvMA0GCSqGSIb3DQEBAQUABIIBAILNgVK01i39K6aa0ufT9HHewBf0
+# nUxmAQzkCBVNocj+VRw8lrppoGjhnyWdJRY/H6YtkeW1nRUoSh3SoeEE/t/2/52F
+# nnmLJeXsx6gE/LHja+xZ5sObu4zIRkvR7C8i/VbaZ58vceDqOF0UCgG1rK3v0kmj
+# /7+GgOpQhxZHZcCwyI3VI5QaqR0QKVZIHRcqlKkftKFVQIjLz+gx7CP/SsNc6jqr
+# S3VWgo2sw3iIg3jaGkB3TDZSfFfJw+3cywHot2xD6LKwV+8CCv51XheVtJPjYQkp
+# n1WeC6d31Lfxwsqs9Ulf+O+9EvPPuKH226hE6tMj+uNKDooFp7Mcf4yhHts=
 # SIG # End signature block
