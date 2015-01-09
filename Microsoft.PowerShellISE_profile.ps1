@@ -1,19 +1,31 @@
-
-$time = Get-Date -Format "HH:mm"
+$time = Get-Date -Format "HH:mm:ss"
+$fulltime = get-date
 $user = $env:username
 Write-Host "Hi "$user", welcome back! It is now " $time
-
 Remove-Variable -Force HOME
 Set-Variable HOME 'E:\Documents\WindowsPowerShell\Scripts'
-E:
+d:
 cd 'E:\Documents\WindowsPowerShell\Scripts'
 $pwd
+Write-Host "Please wait enumerting modules..."
+$modules = get-module -ListAvailable
+write-host "You have "$modules.Count " Available"
+$timer = Measure-Command {
+foreach($module in $modules)
+{
+#Write-host "Importing " $module.Name
+Import-Module -Name $module.Name -ErrorAction SilentlyContinue
+}
+Add-PSSnapIn Microsoft.BDD.PSSnapIn
+}
+#$timer = (New-Timespan -End $fulltime).Seconds
+Write-host "It Took " $timer" To Import " $modules.count " Modules"
 
 # SIG # Begin signature block
 # MIINGAYJKoZIhvcNAQcCoIINCTCCDQUCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUqfRi1XY411stLiIWKHUDNX+D
-# bCagggpaMIIFIjCCBAqgAwIBAgIQAupQIxjzGlMFoE+9rHncOTANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUT1DtVYnDYk1I8toEGYh+ZzUC
+# jNagggpaMIIFIjCCBAqgAwIBAgIQAupQIxjzGlMFoE+9rHncOTANBgkqhkiG9w0B
 # AQsFADByMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYD
 # VQQLExB3d3cuZGlnaWNlcnQuY29tMTEwLwYDVQQDEyhEaWdpQ2VydCBTSEEyIEFz
 # c3VyZWQgSUQgQ29kZSBTaWduaW5nIENBMB4XDTE0MDcxNzAwMDAwMFoXDTE1MDcy
@@ -73,11 +85,11 @@ $pwd
 # MTAvBgNVBAMTKERpZ2lDZXJ0IFNIQTIgQXNzdXJlZCBJRCBDb2RlIFNpZ25pbmcg
 # Q0ECEALqUCMY8xpTBaBPvax53DkwCQYFKw4DAhoFAKB4MBgGCisGAQQBgjcCAQwx
 # CjAIoAKAAKECgAAwGQYJKoZIhvcNAQkDMQwGCisGAQQBgjcCAQQwHAYKKwYBBAGC
-# NwIBCzEOMAwGCisGAQQBgjcCARUwIwYJKoZIhvcNAQkEMRYEFMAy6VeQ/mCg/5e6
-# P1fS11yNkurvMA0GCSqGSIb3DQEBAQUABIIBAILNgVK01i39K6aa0ufT9HHewBf0
-# nUxmAQzkCBVNocj+VRw8lrppoGjhnyWdJRY/H6YtkeW1nRUoSh3SoeEE/t/2/52F
-# nnmLJeXsx6gE/LHja+xZ5sObu4zIRkvR7C8i/VbaZ58vceDqOF0UCgG1rK3v0kmj
-# /7+GgOpQhxZHZcCwyI3VI5QaqR0QKVZIHRcqlKkftKFVQIjLz+gx7CP/SsNc6jqr
-# S3VWgo2sw3iIg3jaGkB3TDZSfFfJw+3cywHot2xD6LKwV+8CCv51XheVtJPjYQkp
-# n1WeC6d31Lfxwsqs9Ulf+O+9EvPPuKH226hE6tMj+uNKDooFp7Mcf4yhHts=
+# NwIBCzEOMAwGCisGAQQBgjcCARUwIwYJKoZIhvcNAQkEMRYEFPilmxFOT2JgJjCE
+# n5vtWni7pJhAMA0GCSqGSIb3DQEBAQUABIIBAJ5xp7Cae4/QaV8HJrnpFxZ8oEbJ
+# fJ8qKaMx1H7zXbr8Im6F9z2qHbZx29Cjp3QQr7EmdfA1+GL1PZGQgKmyNbbxbLl6
+# YwDguIThK8eBBDmqgeiAkb3WCASFEcutNmqtA3Ucu6Cb6dwn21UrKzepnrWky0Vq
+# zd4ojCAfFrFiq38gSccedCYdggSn6yddCKaPykD/UUoNxHkx5eWgtY5NvkAVS19a
+# x+2tlH1z1d/XbV6uygoHHP1e1Pcz7zlz59ydK6YbA+ylzGWXYnHTkiPGP5O5lfCe
+# nlVBVkIHw82PSZP+4NELCmKZzP+jbLVZhA1vYviQ2JmqSeK5tojdXb7TbpA=
 # SIG # End signature block
