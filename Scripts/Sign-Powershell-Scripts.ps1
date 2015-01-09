@@ -1,13 +1,17 @@
 ﻿$cert=(dir cert:currentuser\my\ -CodeSigningCert)
 $files = Get-ChildItem -Path 'E:\Documents\WindowsPowershell' -Include "*.ps1" -Recurse
 foreach($file in $files){
-Set-AuthenticodeSignature $file.FullName -cert $cert
+$hash = Set-AuthenticodeSignature $file.FullName -cert $cert
+if (!($hash.Status -eq "Valid")) { 
+write-host $hash.status $hash.path
+remove-item $hash.path
+}
 }
 # SIG # Begin signature block
 # MIINGAYJKoZIhvcNAQcCoIINCTCCDQUCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUFcD8mDfb+rDKc7a622oKZ5Ci
-# dn+gggpaMIIFIjCCBAqgAwIBAgIQAupQIxjzGlMFoE+9rHncOTANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUShaO7fbNRD1JetePSjY+e6nI
+# MPygggpaMIIFIjCCBAqgAwIBAgIQAupQIxjzGlMFoE+9rHncOTANBgkqhkiG9w0B
 # AQsFADByMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYD
 # VQQLExB3d3cuZGlnaWNlcnQuY29tMTEwLwYDVQQDEyhEaWdpQ2VydCBTSEEyIEFz
 # c3VyZWQgSUQgQ29kZSBTaWduaW5nIENBMB4XDTE0MDcxNzAwMDAwMFoXDTE1MDcy
@@ -67,11 +71,11 @@ Set-AuthenticodeSignature $file.FullName -cert $cert
 # MTAvBgNVBAMTKERpZ2lDZXJ0IFNIQTIgQXNzdXJlZCBJRCBDb2RlIFNpZ25pbmcg
 # Q0ECEALqUCMY8xpTBaBPvax53DkwCQYFKw4DAhoFAKB4MBgGCisGAQQBgjcCAQwx
 # CjAIoAKAAKECgAAwGQYJKoZIhvcNAQkDMQwGCisGAQQBgjcCAQQwHAYKKwYBBAGC
-# NwIBCzEOMAwGCisGAQQBgjcCARUwIwYJKoZIhvcNAQkEMRYEFHbxHmOkPZea7Gr7
-# X/JweKM1Cv7fMA0GCSqGSIb3DQEBAQUABIIBALANsixLHBn9sr2cJ5rvbczPixYl
-# OqytkTWKjok3wE4SfB6Xdbgu9n5yl8oBxIYXmCrmcn4rtqiyONCqR/4lJMwmJf8S
-# Xa21PzgnY6SIDuflQsLOoTxoIGgh11zyw+LejMjbIYgqKdNF3+uT3kqqnRPEICtZ
-# Fptck3QIg3goCkq+R7w0fke6SxKhpypPIZyam+qIwNI4SJ5axZEv1C+XZlnLgZIV
-# Rgr7FXh5sntWc8VBAJ4+4IdLZmTFJuPqv2qwlzJOstqVSMwqpTjdHPCC4lUvz7LI
-# 1HIMzRI8PZlzSjXQuFmPyr3FxVq8oU5BWeE6qeo+Irc580SQUFqvGrnCsvk=
+# NwIBCzEOMAwGCisGAQQBgjcCARUwIwYJKoZIhvcNAQkEMRYEFGlPJn+AvnL/4YsC
+# IqFekcUSeV1YMA0GCSqGSIb3DQEBAQUABIIBADBvHUeI0bZDCK9lFtdHqAS1DQga
+# YsiQs1sxJtFe+qh1fKhPbkTYKDG4WE17Ue8UUa6XzrQcAlPC0U3uOpaBYxoEhM5H
+# 0VQZ00XlUY853l3ob5H1QHoO6q21gESiGBoyDW4tZ98AvfsNE//DCNQSWvmHnVbs
+# 8bjJ45MMVCoGzGlyrwsoMszjZSwcGloE/+Ciy8GszIQhWdfvF/ZWrvm5KgXZhX1D
+# V/cIO8AY8tlcCO6dV0I/lwpk3xQKxtg9T5jr6Q87Qp8K0ai52xdVBsS9pw6OAveN
+# Pv5oh0KtRX80iixXy3ZTPM+pncy+R8vOtWKOTLadsHq7Ts67XeTxYkZtFuM=
 # SIG # End signature block
