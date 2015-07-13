@@ -1,0 +1,43 @@
+clear
+$time = Get-Date -Format "HH:mm:ss"
+$fulltime = get-date
+$user = $env:username
+Write-Host "Hi "$user", welcome back! It is now " $time
+Remove-Variable -Force HOME -ErrorAction SilentlyContinue
+Set-Variable HOME 'E:\Documents\WindowsPowerShell\Scripts'
+E:
+cd 'E:\Documents\WindowsPowerShell\Scripts'
+$pwd
+Write-Host "Please wait enumerating modules..."
+$timer = measure-command {
+$modules = get-module -ListAvailable
+}
+#write-host "You have "$modules.Count " Available"
+$output = "It Took: "+$timer.Seconds +" Secondsto Enumerate the Available "+$modules.Count+" Modules"
+Write-Output $output
+<#
+$timer = Measure-Command {
+ foreach($module in $modules)
+    {
+    Write-host "Importing " $module.Name
+    Import-Module -Name $module.Name -ErrorAction SilentlyContinue > $null
+    }
+  
+    #Leave any comments with the # sign
+    #Install Quest Active Directory CMDLets
+    Write-Host “Installing Quest Active Directory Tools.  Please wait…”
+    Add-PSSnapin Quest.ActiveRoles.ADManagement -ErrorAction SilentlyContinue
+    Write-Host “Installing Exchange Management Tools.  Please wait…”
+    #Add-PSSnapin Microsoft.Exchange.Management.Powershell.Admin
+    write-host "Installing MDT Tools... Please wait.."
+    Add-PSSnapIn Microsoft.BDD.PSSnapIn
+}
+    Write-host "It Took " $timer.Seconds "Seconds To Import " $modules.count " Modules"
+
+#>
+cd $home
+$timer = measure-command {
+write-Host "Updating Help"
+update-help
+}
+Write-host "It Took " $timer.Seconds "Seconds To Update Help Content"

@@ -1,43 +1,51 @@
-﻿$watcher = New-Object System.IO.FileSystemWatcher -Property @{Path = 'D:\PowerShell\Temp';
-                                                              Filter = '*.txt';
-                                                              NotifyFilter = [System.IO.NotifyFilters]'FileName,LastWrite'}d:
+﻿ #Script to copy group memberships from a source user to a target user.
+ 
+   [CmdletBinding()]
+    param (
+        [Parameter(Mandatory=$true,ValueFromPipeline=$True)]
+        [string[]] $Source,
+        [string] $Target
+        )
+ 
 
-$CreatedAction =
-{
-  
-  Write-Output("Starting File check")
-
-  $ParentPath = $event.sourceEventArgs.FullPath
-  $filecontents = Get-Content $ParentPath
-  $b = $FileContents[$FileContents.Count-1]
-    if (!$b.Contains("|RB|"))  {
-    Write-debug ("String Not Found")
-    }
-    else {
-    ## found '|RB|"
-    write-output("Found")
-    #copy line by line removing line with |RB|
-    for ($counter = 0; $counter = $a.Count-2; $counter++) {
-                $tempFile = [IO.Path]::GetTempFileName()
-                $FileContents[$counter] | ]Out-File $tempFile
-                write-debug ($fileContents[$counter])
-                write-debug ("Temporary file = $tempFile")
-                Write-Debug ("Parent Path = $parentpath")
-                                }
-     Copy-Item $tempFile $parentpathh -Force
-     Remove-Item $tempFile
+# Retrieve group memberships.
+ $SourceUser = Get-ADUser $Source -Properties memberOf
+ $TargetUser = Get-ADUser $Target -Properties memberOf
+ 
+# Hash table of source user groups.
+ $List = @{}
+ 
+#Enumerate direct group memberships of source user.
+ ForEach ($SourceDN In $SourceUser.memberOf)
+ {
+     # Add this group to hash table.
+     $List.Add($SourceDN, $True)
+     # Bind to group object.
+     $SourceGroup = [ADSI]"LDAP://$SourceDN"
+     # Check if target user is already a member of this group.
+     If ($SourceGroup.IsMember("LDAP://" + $TargetUser.distinguishedName) -eq $False)
+     {
+         # Add the target user to this group.
+         Add-ADGroupMember -Identity $SourceDN -Members $Target
      }
-     Start-Sleep -Seconds 2
-     Move-Item -Path $($event.sourceEventArgs.FullPath) -Destination $NewDestPath
-}            
-
-Register-ObjectEvent -InputObject $watcher -EventName Created -SourceIdentifier FileCreated -Action $CreatedAction
-
+ }
+ 
+# Enumerate direct group memberships of target user.
+ ForEach ($TargetDN In $TargetUser.memberOf)
+ {
+     # Check if source user is a member of this group.
+     If ($List.ContainsKey($TargetDN) -eq $False)
+     {
+         # Source user not a member of this group.
+         # Remove target user from this group.
+         Remove-ADGroupMember $TargetDN $Target
+     }
+ } 
 # SIG # Begin signature block
 # MIINGAYJKoZIhvcNAQcCoIINCTCCDQUCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU28IqOlAaPtbGoht8qjq4qjk1
-# BwCgggpaMIIFIjCCBAqgAwIBAgIQAupQIxjzGlMFoE+9rHncOTANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUMSWOVpJdgvgzwV66GBP9ir/e
+# 7ougggpaMIIFIjCCBAqgAwIBAgIQAupQIxjzGlMFoE+9rHncOTANBgkqhkiG9w0B
 # AQsFADByMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYD
 # VQQLExB3d3cuZGlnaWNlcnQuY29tMTEwLwYDVQQDEyhEaWdpQ2VydCBTSEEyIEFz
 # c3VyZWQgSUQgQ29kZSBTaWduaW5nIENBMB4XDTE0MDcxNzAwMDAwMFoXDTE1MDcy
@@ -97,11 +105,11 @@ Register-ObjectEvent -InputObject $watcher -EventName Created -SourceIdentifier 
 # MTAvBgNVBAMTKERpZ2lDZXJ0IFNIQTIgQXNzdXJlZCBJRCBDb2RlIFNpZ25pbmcg
 # Q0ECEALqUCMY8xpTBaBPvax53DkwCQYFKw4DAhoFAKB4MBgGCisGAQQBgjcCAQwx
 # CjAIoAKAAKECgAAwGQYJKoZIhvcNAQkDMQwGCisGAQQBgjcCAQQwHAYKKwYBBAGC
-# NwIBCzEOMAwGCisGAQQBgjcCARUwIwYJKoZIhvcNAQkEMRYEFNGDluzFRJOa5bZ6
-# /g5z61sUmrhHMA0GCSqGSIb3DQEBAQUABIIBAAB0xfWalqgtfiNvhj7wZ/DJXMWT
-# vnbD3h9k2Td37doaf42CjlrzLa7XU654GmvqLUiImRyWQRLKuOd5GapVgZVP+Sli
-# mfisEbUqQMiKr1sKbtNafz5Pzbmgh2tpWXuYX0ktPkU13d3cmT85i9uWUqLcNkZe
-# 2Sc4vRNZaN+NjZ7mjz3JCjE3C8Wb+dOYgiebTaOGQ+kVyyQ/tP+WtLU123XjNnQe
-# 0a3oar46O/cNZdsFF7ryD6GZ1psi4s9MW0dNLloEnsUV2EVC/Trj9Xv82jxFuK/u
-# rBGXs1F/jaJLrFYbxv1Yed8E2nmPPgtRJnF0hg8IcCka60YBkGPomlcRKA8=
+# NwIBCzEOMAwGCisGAQQBgjcCARUwIwYJKoZIhvcNAQkEMRYEFCuhjaA9Q9dT2dlg
+# 5CTBVSdeKO41MA0GCSqGSIb3DQEBAQUABIIBAF5DiAjX8XqyShKHQ4SdJIw5rzJ7
+# S+/M0ie/Hu1KJ+LU+RSEQFudy3SYDeSwcYLq3CBX0TyBRKW183I1+WcH5OAAjwGJ
+# YjPUANmz9d2UvZbr/aIItu8eoUv7We3ESk01QyZDL15pE7KbjN4AH4vOw9vEi4Gr
+# Ub+iZoS6Ukx5aG71atN4ROQBcN1q6erAnLHrJjDI0d1Y/agZO1BuZIoiFJzqP0Az
+# kKQIEXRMvV9rJNQQ/0yXpNHNa/72dXsaSYwBraXAs1H+P2TSSnVi2Hk1HxNJUEIo
+# G15EDRwNgEj3B6BGIZ+/0Sa0ZqW7qOXQytZhUW6OE1V4ecy6h5AkjL1ai2o=
 # SIG # End signature block
